@@ -5,7 +5,7 @@ import com.example.financialapplication.data.*
 import com.example.financialapplication.domain.ItemsInteractor
 import com.example.financialapplication.ui.items.formatters.ItemsFormatter
 import com.example.financialapplication.ui.items.models.UiItem
-import java.text.DecimalFormat
+import java.util.*
 import javax.inject.Inject
 
 class ItemsPresenter @Inject constructor(
@@ -14,11 +14,11 @@ class ItemsPresenter @Inject constructor(
 ) {
 
     suspend fun getItemsFromNetwork(): Result<List<UiItem>, String> = withIOContext {
-        handleInteractorResponse(itemsInteractor.getItemsFromNetwork())
+        handleItemsArrivedInteractorResponse(itemsInteractor.getItemsFromNetwork())
     }
 
     suspend fun getItemsFromCache(): Result<List<UiItem>, String> = withIOContext {
-        handleInteractorResponse(itemsInteractor.getItemsFromCache())
+        handleItemsArrivedInteractorResponse(itemsInteractor.getItemsFromCache())
     }
 
     suspend fun cacheItems(items: List<UiItem>) = withIOContext {
@@ -30,10 +30,14 @@ class ItemsPresenter @Inject constructor(
     }
 
     suspend fun searchItemsByTitleInCache(title: String): Result<List<UiItem>, String> = withIOContext {
-        handleInteractorResponse(itemsInteractor.searchItemsByTitleInCache(title))
+        handleItemsArrivedInteractorResponse(itemsInteractor.searchItemsByTitleInCache(title))
     }
 
-    private fun handleInteractorResponse(result: Result<List<UiItem>, String>): Result<List<UiItem>, String> {
+    suspend fun getDataForStats(): HashMap<String, Int> = withIOContext {
+        itemsInteractor.getDataForStats()
+    }
+
+    private fun handleItemsArrivedInteractorResponse(result: Result<List<UiItem>, String>): Result<List<UiItem>, String> {
         return when (result) {
             is ResultSuccess -> ResultSuccess(itemsFormatter.formatItems(result.value))
             is ResultFailure -> result

@@ -9,4 +9,14 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="yellow">#FFEB3B</color>
+
+    <color name="pieChartColor1">#F44336</color>
+    <color name="pieChartColor2">#9C27B0</color>
+    <color name="pieChartColor3">#03A9F4</color>
+    <color name="pieChartColor4">#4CAF50</color>
+    <color name="pieChartColor5">#FFEB3B</color>
+    <color name="pieChartColor6">#673AB7</color>
+    <color name="pieChartColor7">#FF9800</color>
+    <color name="pieChartColor8">#B8B8B8</color>
+    <color name="pieChartColor9">#05D8C4</color>
 </resources>

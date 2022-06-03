@@ -7,7 +7,9 @@ import com.example.financialapplication.data.ResultFailure
 import com.example.financialapplication.data.ResultSuccess
 import com.example.financialapplication.R
 import com.example.financialapplication.ui.items.models.UiItem
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.HashMap
 
 class ItemsViewModel @Inject constructor(
     private val itemsPresenter: ItemsPresenter
@@ -69,5 +71,10 @@ class ItemsViewModel @Inject constructor(
         }
     }
 
+    fun navigateToStatsScreen() = execute {
+        postQueuedEvent(NavigateToStatsScreen(itemsPresenter.getDataForStats()))
+    }
+
     data class FailedToUpdateEvent(@StringRes val messageRes: Int) : QueuedOneShotEvent
+    data class NavigateToStatsScreen(val values: HashMap<String, Int>) : QueuedOneShotEvent
 }

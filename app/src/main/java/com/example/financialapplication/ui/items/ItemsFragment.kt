@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
+import co.zsmb.rainbowcake.navigation.navigator
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
@@ -14,7 +15,10 @@ import com.afollestad.materialdialogs.customview.customView
 import com.bumptech.glide.Glide
 import com.example.financialapplication.R
 import com.example.financialapplication.ui.extensions.showToast
+import com.example.financialapplication.ui.items.ItemsViewModel.FailedToUpdateEvent
+import com.example.financialapplication.ui.items.ItemsViewModel.NavigateToStatsScreen
 import com.example.financialapplication.ui.items.models.UiItem
+import com.example.financialapplication.ui.stats.StatsFragment
 import kotlinx.android.synthetic.main.fragment_items.*
 import kotlinx.android.synthetic.main.view_details_dialog.*
 
@@ -54,6 +58,9 @@ class ItemsFragment : RainbowCakeFragment<ItemsViewState, ItemsViewModel>() {
                 }
             })
         }
+        statsButton.setOnClickListener {
+            viewModel.navigateToStatsScreen()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -87,7 +94,8 @@ class ItemsFragment : RainbowCakeFragment<ItemsViewState, ItemsViewModel>() {
 
     override fun onEvent(event: OneShotEvent) {
         when (event) {
-            is ItemsViewModel.FailedToUpdateEvent -> showToast(requireContext().getString(event.messageRes))
+            is FailedToUpdateEvent -> showToast(requireContext().getString(event.messageRes))
+            is NavigateToStatsScreen -> navigator?.add(StatsFragment.newInstance(event.values))
         }
     }
 

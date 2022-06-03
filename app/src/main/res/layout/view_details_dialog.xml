@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/detailedItemImage"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/margin_large"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,8 @@
         android:id="@+id/saveItemButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button"
+        android:textSize="@dimen/text_size_normal"
         android:text="@string/button_save"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/margin_large"

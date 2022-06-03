@@ -50,8 +50,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
+            android:paddingBottom="@dimen/padding_extra_larger"
+            android:elevation="0dp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_items" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorAccent"
+        android:elevation="12dp"
+        android:paddingVertical="@dimen/padding_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/statsButton"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:elevation="24dp"
+            android:text="@string/button_stats"
+            android:textSize="@dimen/text_size_normal"
+            app:backgroundTint="?attr/colorPrimaryDark" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
