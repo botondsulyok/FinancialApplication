@@ -12,6 +12,9 @@ interface ItemDao {
     @Query("DELETE FROM items")
     fun deleteAll()
 
+    @Update
+    fun updateItem(item: RoomItem)
+
     @Insert
     fun insertItems(items: List<RoomItem>)
 

@@ -25,6 +25,10 @@ class ItemsPresenter @Inject constructor(
         itemsInteractor.cacheItems(items)
     }
 
+    suspend fun changeItem(item: UiItem) = withIOContext {
+        itemsInteractor.changeItem(item)
+    }
+
     suspend fun searchItemsByTitleInCache(title: String): Result<List<UiItem>, String> = withIOContext {
         handleInteractorResponse(itemsInteractor.searchItemsByTitleInCache(title))
     }

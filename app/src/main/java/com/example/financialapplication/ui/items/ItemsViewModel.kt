@@ -6,6 +6,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import com.example.financialapplication.data.ResultFailure
 import com.example.financialapplication.data.ResultSuccess
 import com.example.financialapplication.R
+import com.example.financialapplication.ui.items.models.UiItem
 import javax.inject.Inject
 
 class ItemsViewModel @Inject constructor(
@@ -22,6 +23,12 @@ class ItemsViewModel @Inject constructor(
     fun updateItems() = execute {
         viewState = Loading
         loadItemsFromNetwork()
+    }
+    fun changeItem(item: UiItem) = execute {
+        // todo we should call the real api
+        viewState = Loading
+        itemsPresenter.changeItem(item)
+        loadItemsFromCache()
     }
 
     private suspend fun loadItemsFromNetwork() {

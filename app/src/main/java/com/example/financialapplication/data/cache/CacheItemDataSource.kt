@@ -1,5 +1,6 @@
 package com.example.financialapplication.data.cache
 
+import android.content.ClipData
 import android.util.Log
 import com.example.financialapplication.ItemsApplication
 import com.example.financialapplication.data.*
@@ -28,6 +29,16 @@ class CacheItemDataSource @Inject constructor() {
         try {
             itemDao.deleteAll()
             itemDao.insertItems(roomItems)
+        }
+        catch (e: Exception) {
+            Log.e("Cache Exception", e.message.toString())
+        }
+    }
+
+    fun changeItem(item: UiItem) {
+        val roomItems = item.toRoomItem()
+        try {
+            itemDao.updateItem(roomItems)
         }
         catch (e: Exception) {
             Log.e("Cache Exception", e.message.toString())

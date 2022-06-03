@@ -47,6 +47,7 @@ class ItemsFragment : RainbowCakeFragment<ItemsViewState, ItemsViewModel>() {
                     viewModel.searchItemsByTitle(query.toString())
                     return true
                 }
+
                 override fun onQueryTextChange(newText: String?): Boolean {
                     viewModel.searchItemsByTitle(newText.toString())
                     return true
@@ -63,13 +64,16 @@ class ItemsFragment : RainbowCakeFragment<ItemsViewState, ItemsViewModel>() {
     private fun showDetailsDialog(item: UiItem) {
         MaterialDialog(requireContext(), BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             customView(R.layout.view_details_dialog, scrollable = true, horizontalPadding = true)
-            detailedItemSummaryText.text = item.summary
+            detailedItemSummaryEditText.setText(item.summary)
             Glide
                 .with(this@ItemsFragment.requireContext())
                 .load(item.iconDrawable)
-                .onlyRetrieveFromCache(true)
                 .placeholder(R.drawable.ic_baseline_image_24)
                 .into(detailedItemImage)
+            saveItemButton.setOnClickListener {
+                viewModel.changeItem(item.copy(summary = detailedItemSummaryEditText.text.toString()))
+                dismiss()
+            }
         }
     }
 

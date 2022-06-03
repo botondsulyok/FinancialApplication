@@ -2,4 +2,5 @@
     <string name="app_name">Financial Application</string>
     <string name="hint_search_by_title">Search by summary</string>
     <string name="failed_to_update_message">Failed to update</string>
+    <string name="button_save">Save</string>
 </resources>

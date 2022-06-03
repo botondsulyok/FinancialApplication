@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="@dimen/margin_normal">
 
-    <TextView
-        android:id="@+id/detailedItemSummaryText"
+    <EditText
+        android:id="@+id/detailedItemSummaryEditText"
         style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,7 +16,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
+        tools:text="Title"
+        android:autofillHints="false"
+        android:inputType="text" />
 
     <ImageView
         android:id="@+id/detailedItemImage"
@@ -25,6 +27,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/margin_large"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedItemSummaryText"
+        app:layout_constraintTop_toBottomOf="@+id/detailedItemSummaryEditText"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveItemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailedItemImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

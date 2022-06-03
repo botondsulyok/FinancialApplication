@@ -25,6 +25,10 @@ class ItemsInteractor @Inject constructor(
         cacheItemDataSource.cacheItems(items)
     }
 
+    fun changeItem(item: UiItem) {
+        cacheItemDataSource.changeItem(item)
+    }
+
     fun searchItemsByTitleInCache(title: String): Result<List<UiItem>, String> {
         return cacheItemDataSource.searchItemsBySummary(title)
     }
